@@ -266,7 +266,13 @@ public class FormUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSalvarActionPerformed
     }
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
+         mod.setUsuPesquisa(jTextFieldPesquisar.getText());
+        BeansUsuario model = dao.buscaUsuario(mod);
+        jTextFieldUsuario.setText(model.getUsuNome());
+        jPasswordFieldSenha.setText(model.getUsuSenha());
+        jPasswordFieldConfSenha.setText(model.getUsuSenha());
+        jComboBoxTipo.setSelectedItem(model.getUsuTipo());
+       
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed

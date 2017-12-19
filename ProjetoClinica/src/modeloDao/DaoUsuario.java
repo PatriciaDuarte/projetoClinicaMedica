@@ -36,7 +36,7 @@ public class DaoUsuario
         conex.desconecta();
     }
     
-    public BeansUsuario buscaMedico(BeansUsuario mod)
+    public BeansUsuario buscaUsuario(BeansUsuario mod)
     {
         conex.conexao();
         conex.executasql("select *from usuarios where usu_nome like'%"+ mod.getUsuPesquisa() + "%'");
