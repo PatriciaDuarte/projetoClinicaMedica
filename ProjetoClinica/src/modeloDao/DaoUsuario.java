@@ -53,4 +53,23 @@ public class DaoUsuario
         conex.desconecta();
         return mod;
     }
+    
+        public void Alterar(BeansUsuario mod)
+    {
+        conex.conexao();
+        try {
+            PreparedStatement pst = conex.con.prepareStatement("update usuarios set usu_nome=?,usu_senha=?,usu_tipo=? where usu_codigo=?");
+            pst.setString(1, mod.getUsuNome());
+            pst.setString(2, mod.getUsuSenha());
+            pst.setString(3, mod.getUsuTipo());
+            pst.setInt(4, mod.getUsuCod());
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Usuario alterado com sucesso.");
+            
+        } catch (SQLException ex) {
+              JOptionPane.showMessageDialog(null, "Erro na alteração do usuario.\n Erro:"+ex);
+        }
+        
+        conex.desconecta();
+    }
 }

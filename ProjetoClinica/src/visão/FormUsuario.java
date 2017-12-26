@@ -88,6 +88,11 @@ public class FormUsuario extends javax.swing.JFrame {
         });
 
         jButtonAlterar.setText("Alterar");
+        jButtonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlterarActionPerformed(evt);
+            }
+        });
 
         jButtonExcluir.setText("Excluir");
 
@@ -263,6 +268,20 @@ public class FormUsuario extends javax.swing.JFrame {
             jPasswordFieldSenha.setEnabled(false);
             jButtonSalvar.setEnabled(false);
             jButtonCancelar.setEnabled(false);
+        }else{
+            mod.setUsuNome(jTextFieldUsuario.getText());
+            mod.setUsuTipo((String) jComboBoxTipo.getSelectedItem());
+            mod.setUsuSenha(jPasswordFieldSenha.getText());
+            dao.Alterar(mod);
+            
+            jTextFieldUsuario.setText("");
+            jPasswordFieldSenha.setText("");
+            jPasswordFieldConfSenha.setText("");
+            jTextFieldUsuario.setEnabled(false);
+            jPasswordFieldConfSenha.setEnabled(false);
+            jPasswordFieldSenha.setEnabled(false);
+            jButtonSalvar.setEnabled(false);
+            jButtonCancelar.setEnabled(false);
     }//GEN-LAST:event_jButtonSalvarActionPerformed
     }
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
@@ -278,6 +297,15 @@ public class FormUsuario extends javax.swing.JFrame {
     private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
+
+    private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
+        flag = 2;
+        jTextFieldUsuario.setEnabled(true);
+        jComboBoxTipo.setEnabled(true);
+        jPasswordFieldSenha.setEnabled(true);
+        jPasswordFieldConfSenha.setEnabled(true);
+        
+    }//GEN-LAST:event_jButtonAlterarActionPerformed
     
     
     public static void main(String args[]) {
