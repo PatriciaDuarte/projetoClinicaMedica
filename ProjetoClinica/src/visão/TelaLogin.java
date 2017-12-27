@@ -1,13 +1,22 @@
 //Autora: Patrícia Duarte da Silva
 package visão;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import modeloConection.ConexaoBD;
 
 public class TelaLogin extends javax.swing.JFrame {
 
-    public TelaLogin() {
+    ConexaoBD con = new ConexaoBD();
+    
+    public TelaLogin() 
+    {
         initComponents();
         setResizable(false);
+        con.conexao();
+        
     }
     
     @SuppressWarnings("unchecked")
@@ -85,15 +94,23 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
-        if(jTextFieldUsuario.getText().equals("admin")&& jPasswordFieldSenha.getText().equals("1234"))//Condição para acessar o sistema
+        try
         {
-            TelaPrincipal tela = new TelaPrincipal();
-            tela.setVisible(true);
-        }else
+            con.executasql("select *from usuarios where usu_nome='"+jTextFieldUsuario.getText()+"'");
+            con.rs.first();
+            if(con.rs.getString("usu_senha").equals(jPasswordFieldSenha.getText()))
+            {
+                TelaPrincipal tela = new TelaPrincipal();
+                tela.setVisible(true);
+                dispose();//Abre a tela principal e fecha a tela login
+            }else
+            {
+                JOptionPane.showMessageDialog(rootPane,"Senha ou usuários inválidos!");
+            }
+        } catch (SQLException ex) 
         {
-            JOptionPane.showMessageDialog(rootPane, "Senha ou Usuário Inválidos.");
+            JOptionPane.showMessageDialog(rootPane,"Senha ou usuários inválidos!"+ex);
         }
-        
     }//GEN-LAST:event_jButtonAcessarActionPerformed
 
     private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
