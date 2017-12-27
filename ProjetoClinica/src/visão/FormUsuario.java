@@ -79,7 +79,7 @@ public class FormUsuario extends javax.swing.JFrame {
 
         jPasswordFieldSenha.setEnabled(false);
 
-        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "usuário", "administrador", "recepcionista", " " }));
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "usuário", "administrador", "recepcionista" }));
         jComboBoxTipo.setEnabled(false);
 
         jButtonNovo.setText("Novo");
@@ -193,11 +193,9 @@ public class FormUsuario extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPasswordFieldSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,10 +258,10 @@ public class FormUsuario extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        setSize(new java.awt.Dimension(688, 447));
+        setSize(new java.awt.Dimension(717, 461));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -303,7 +301,7 @@ public class FormUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"Preencha a SENHA para continuar.");
             jPasswordFieldSenha.requestFocus();
         }else
-        if(jPasswordFieldSenha.equals(jPasswordFieldConfSenha))
+        if(jPasswordFieldSenha.getText().equals(jPasswordFieldConfSenha.getText()))
         {
             if(flag == 1)
             {
@@ -340,59 +338,26 @@ public class FormUsuario extends javax.swing.JFrame {
                 jTextFieldCod.setText("");
                 jButtonAlterar.setEnabled(false);
                 jButtonCancelar.setEnabled(false);
-            }else
-                
-                        JOptionPane.showMessageDialog(rootPane,"As senhas não são iguais.");
-                
+            }
         }else
-               
-        if(flag == 1)
         {
-            mod.setUsuNome(jTextFieldUsuario.getText());
-            mod.setUsuTipo((String) jComboBoxTipo.getSelectedItem());
-            mod.setUsuSenha(jPasswordFieldSenha.getText());
-            dao.Salvar(mod);
-            preencherTabela("select *from usuarios order by usu_nome");
-            jTextFieldUsuario.setText("");
-            jPasswordFieldSenha.setText("");
-            jPasswordFieldConfSenha.setText("");
-            jTextFieldUsuario.setEnabled(false);
-            jPasswordFieldConfSenha.setEnabled(false);
-            jPasswordFieldSenha.setEnabled(false);
-            jButtonNovo.setEnabled(true);
-            jTextFieldCod.setText("");
-            jButtonCancelar.setEnabled(false);
-            
-        }else{
-            mod.setUsuCod(Integer.parseInt(jTextFieldCod.getText()));
-            mod.setUsuNome(jTextFieldUsuario.getText());
-            mod.setUsuTipo((String) jComboBoxTipo.getSelectedItem());
-            mod.setUsuSenha(jPasswordFieldSenha.getText());
-            dao.Alterar(mod);
-            preencherTabela("select *from usuarios order by usu_nome");
-            jTextFieldUsuario.setText("");
-            jPasswordFieldSenha.setText("");
-            jPasswordFieldConfSenha.setText("");
-            jTextFieldUsuario.setEnabled(false);
-            jPasswordFieldConfSenha.setEnabled(false);
-            jPasswordFieldSenha.setEnabled(false);
-            jButtonNovo.setEnabled(true);
-            jTextFieldCod.setText("");
-            jButtonAlterar.setEnabled(false);
-            jButtonCancelar.setEnabled(false);
+            JOptionPane.showMessageDialog(rootPane, "As senhas não correspondem!");
+        }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
-    }
+    
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-         mod.setUsuPesquisa(jTextFieldPesquisar.getText());
+        mod.setUsuPesquisa(jTextFieldPesquisar.getText());
         BeansUsuario model = dao.buscaUsuario(mod);
         jTextFieldCod.setText(String.valueOf(model.getUsuCod()));
         jTextFieldUsuario.setText(model.getUsuNome());
         jPasswordFieldSenha.setText(model.getUsuSenha());
         jPasswordFieldConfSenha.setText(model.getUsuSenha());
         jComboBoxTipo.setSelectedItem(model.getUsuTipo());
-        jButtonAlterar.setEnabled(true);
-        jButtonExcluir.setEnabled(true);
-        
+        jButtonAlterar.setEnabled(!true);
+        jButtonExcluir.setEnabled(!true);
+        jButtonCancelar.setEnabled(false);
+        jButtonNovo.setEnabled(true);
+         preencherTabela("select *from usuarios where usu_nome like'%"+ mod.getUsuPesquisa()+ "%'");
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jTextFieldUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUsuarioActionPerformed

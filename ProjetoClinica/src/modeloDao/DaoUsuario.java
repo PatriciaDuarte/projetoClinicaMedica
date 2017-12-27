@@ -48,6 +48,7 @@ public class DaoUsuario
             mod.setUsuSenha(conex.rs.getString("usu_senha"));
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Usuário não cadastrado!");
+            
          }
         
         conex.desconecta();
