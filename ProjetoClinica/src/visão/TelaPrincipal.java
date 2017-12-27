@@ -32,6 +32,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabelPainelFundo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButtonFecharBemVindo = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jLabelFundoTelaPrincipal = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastro = new javax.swing.JMenu();
@@ -108,6 +109,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jInternalFrameBemVindo.getContentPane().add(jButtonFecharBemVindo);
         jButtonFecharBemVindo.setBounds(660, 0, 40, 40);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setText("Sistema de Gerenciamento de:");
+        jInternalFrameBemVindo.getContentPane().add(jLabel4);
+        jLabel4.setBounds(20, 20, 280, 22);
 
         getContentPane().add(jInternalFrameBemVindo);
         jInternalFrameBemVindo.setBounds(0, 50, 730, 390);
@@ -252,6 +258,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelFundoTelaPrincipal;
     private javax.swing.JLabel jLabelPainelFundo;
     private javax.swing.JMenuBar jMenuBar1;
