@@ -1,5 +1,9 @@
 package visão;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modeloConection.ConexaoBD;//Está em pacote diferente, por isso faz a importação.
 
 /**
@@ -9,7 +13,8 @@ import modeloConection.ConexaoBD;//Está em pacote diferente, por isso faz a imp
 public class TelaPrincipal extends javax.swing.JFrame {
 
    ConexaoBD conecta = new ConexaoBD();
-   
+   FormMedico tela = new FormMedico();
+   FormUsuario telaUsu = new FormUsuario();
     public TelaPrincipal(String usuario)
     {
         setResizable(false);//Trava a tela
@@ -59,7 +64,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        jInternalFrameBemVindo.setTitle("Bem-vindos");
+        jInternalFrameBemVindo.setTitle("                                                                                           Bem-vindos");
         jInternalFrameBemVindo.setVisible(true);
         jInternalFrameBemVindo.getContentPane().setLayout(null);
 
@@ -109,7 +114,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setBounds(10, 10, 240, 22);
 
         jInternalFrameBemVindo.getContentPane().add(jPanelInternal);
-        jPanelInternal.setBounds(10, 50, 700, 290);
+        jPanelInternal.setBounds(10, 50, 700, 300);
 
         jButtonFecharBemVindo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit.png"))); // NOI18N
         jButtonFecharBemVindo.setToolTipText("Fechar Tela Bem-Vindo");
@@ -127,13 +132,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel4.setBounds(20, 20, 280, 22);
 
         getContentPane().add(jInternalFrameBemVindo);
-        jInternalFrameBemVindo.setBounds(0, 80, 730, 380);
+        jInternalFrameBemVindo.setBounds(0, 60, 730, 380);
         getContentPane().add(jLabelUsuario);
-        jLabelUsuario.setBounds(70, 470, 140, 20);
+        jLabelUsuario.setBounds(70, 440, 140, 20);
 
         jLabel5.setText("Usuário:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(20, 470, 60, 20);
+        jLabel5.setBounds(20, 440, 60, 20);
 
         jLabelFundoTelaPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo_telaprincipal.jpg"))); // NOI18N
         getContentPane().add(jLabelFundoTelaPrincipal);
@@ -195,7 +200,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(745, 556));
+        setSize(new java.awt.Dimension(733, 519));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,13 +217,59 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemTelaBemVindoActionPerformed
 
     private void jMenuItemCadMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadMedicosActionPerformed
-     FormMedico tela = new FormMedico();
-     tela.setVisible(true);
+       try {
+           conecta.executasql("select *from usuarios where usu_nome='"+jLabelUsuario.getText()+"'");
+           conecta.rs.first();
+           if(conecta.rs.getString("usu_tipo").equals("administrador"))
+           {
+               if(tela == null)
+               {
+                   tela = new FormMedico();
+                   tela.setVisible(true);
+                   tela.setResizable(false);//Não deixa redimensionar a tela
+               }else
+               {
+                   tela.setVisible(true);
+                   tela.setResizable(false);
+               }
+              // FormMedico tela = new FormMedico();
+              // tela.setVisible(true);
+           }else
+           {
+               JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate o administrador do sistema.");
+           }
+       } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate o administrador do sistema."+ex);
+       }
+        
     }//GEN-LAST:event_jMenuItemCadMedicosActionPerformed
 
     private void jButtonCadMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadMedActionPerformed
-       FormMedico tela = new FormMedico();
-       tela.setVisible(true);
+      
+        try {
+           conecta.executasql("select *from usuarios where usu_nome='"+jLabelUsuario.getText()+"'");
+           conecta.rs.first();
+           if(conecta.rs.getString("usu_tipo").equals("administrador"))
+           {
+                if(tela == null)
+               {
+                   tela = new FormMedico();
+                   tela.setVisible(true);
+                   tela.setResizable(false);//Não deixa redimensionar a tela
+               }else
+               {
+                   tela.setVisible(true);
+                   tela.setResizable(false);
+               }
+               //FormMedico tela = new FormMedico();
+               //tela.setVisible(true);
+           }else
+           {
+               JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate o administrador do sistema.");
+           }
+       } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate o administrador do sistema."+ex);
+       }
     }//GEN-LAST:event_jButtonCadMedActionPerformed
 
     private void jMenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSairMouseClicked
@@ -226,8 +277,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuSairMouseClicked
 
     private void jMenuItemCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadUsuariosActionPerformed
-       FormUsuario tela = new FormUsuario();
-       tela.setVisible(true);
+       
+       
+        try {
+           conecta.executasql("select *from usuarios where usu_nome='"+jLabelUsuario.getText()+"'");
+           conecta.rs.first();
+           if(conecta.rs.getString("usu_tipo").equals("administrador"))
+           {
+                if(telaUsu == null)
+               {
+                   telaUsu = new FormUsuario();
+                   telaUsu.setVisible(true);
+                   telaUsu.setResizable(false);//Não deixa redimensionar a tela
+               }else
+               {
+                   telaUsu.setVisible(true);
+                   telaUsu.setResizable(false);
+               }
+              // FormUsuario tela = new FormUsuario();
+              // tela.setVisible(true);
+           }else
+           {
+               JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate o administrador do sistema.");
+           }
+       } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate o administrador do sistema."+ex);
+       }
     }//GEN-LAST:event_jMenuItemCadUsuariosActionPerformed
 
     /**
