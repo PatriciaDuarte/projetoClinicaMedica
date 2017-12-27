@@ -72,4 +72,19 @@ public class DaoUsuario
         
         conex.desconecta();
     }
+        
+            public void Excluir(BeansUsuario mod)
+    {
+        conex.conexao();
+        try {
+            PreparedStatement pst = conex.con.prepareStatement("delete from usuarios where usu_codigo=?");
+            pst.setInt(1, mod.getUsuCod());
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Usuario excluido com sucesso." );
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir usuário.\n Erro:"+ex);
+        }
+        
+        conex.desconecta();
+    }
 }
