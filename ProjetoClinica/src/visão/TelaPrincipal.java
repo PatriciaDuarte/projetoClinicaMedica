@@ -10,12 +10,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
    ConexaoBD conecta = new ConexaoBD();
    
-    public TelaPrincipal()
+    public TelaPrincipal(String usuario)
     {
         setResizable(false);//Trava a tela
         initComponents();
+        jLabelUsuario.setText(usuario);
         conecta.conexao();
     }
+
+    private TelaPrincipal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+
+    
 
      @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -33,6 +42,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jButtonFecharBemVindo = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabelUsuario = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabelFundoTelaPrincipal = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuCadastro = new javax.swing.JMenu();
@@ -90,7 +101,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabelPainelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/internalframe.png"))); // NOI18N
         jPanelInternal.add(jLabelPainelFundo);
-        jLabelPainelFundo.setBounds(-10, 0, 710, 300);
+        jLabelPainelFundo.setBounds(-20, -20, 710, 290);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Sistema de Gerenciamento de:");
@@ -116,11 +127,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel4.setBounds(20, 20, 280, 22);
 
         getContentPane().add(jInternalFrameBemVindo);
-        jInternalFrameBemVindo.setBounds(0, 50, 730, 390);
+        jInternalFrameBemVindo.setBounds(0, 80, 730, 380);
+        getContentPane().add(jLabelUsuario);
+        jLabelUsuario.setBounds(70, 470, 140, 20);
+
+        jLabel5.setText("Usuário:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(20, 470, 60, 20);
 
         jLabelFundoTelaPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo_telaprincipal.jpg"))); // NOI18N
         getContentPane().add(jLabelFundoTelaPrincipal);
-        jLabelFundoTelaPrincipal.setBounds(0, 0, 730, 470);
+        jLabelFundoTelaPrincipal.setBounds(0, -60, 750, 460);
 
         jMenuCadastro.setText("Cadastros");
 
@@ -178,7 +195,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(741, 477));
+        setSize(new java.awt.Dimension(745, 556));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -259,8 +276,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabelFundoTelaPrincipal;
     private javax.swing.JLabel jLabelPainelFundo;
+    private javax.swing.JLabel jLabelUsuario;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenu jMenuFerramentas;

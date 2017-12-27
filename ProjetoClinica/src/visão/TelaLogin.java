@@ -94,13 +94,14 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldUsuarioActionPerformed
 
     private void jButtonAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAcessarActionPerformed
+        //VERIFICA SE O USUÁRIO ESTÁ CADASTRADO NO BANCO DE DADOS
         try
         {
             con.executasql("select *from usuarios where usu_nome='"+jTextFieldUsuario.getText()+"'");
             con.rs.first();
             if(con.rs.getString("usu_senha").equals(jPasswordFieldSenha.getText()))
             {
-                TelaPrincipal tela = new TelaPrincipal();
+                TelaPrincipal tela = new TelaPrincipal(jTextFieldUsuario.getText());
                 tela.setVisible(true);
                 dispose();//Abre a tela principal e fecha a tela login
             }else
