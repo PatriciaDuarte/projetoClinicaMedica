@@ -15,6 +15,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
    ConexaoBD conecta = new ConexaoBD();
    FormMedico tela = new FormMedico();
    FormUsuario telaUsu = new FormUsuario();
+   FormPaciente telaPac = new FormPaciente();
     public TelaPrincipal(String usuario)
     {
         setResizable(false);//Trava a tela
@@ -101,6 +102,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButtonCadPacientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/cadPacientes.png"))); // NOI18N
         jButtonCadPacientes.setToolTipText("Pacientes");
+        jButtonCadPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadPacientesActionPerformed(evt);
+            }
+        });
         jPanelInternal.add(jButtonCadPacientes);
         jButtonCadPacientes.setBounds(240, 40, 120, 120);
 
@@ -205,7 +211,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemCadPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadPacientesActionPerformed
-        // TODO add your handling code here:
+       try {
+           conecta.executasql("select *from usuarios where usu_nome='"+jLabelUsuario.getText()+"'");
+           conecta.rs.first();
+           if((conecta.rs.getString("usu_tipo").equals("recepcionista"))||(conecta.rs.getString("usu_tipo").equals("administrador")))
+           {
+               if(telaPac == null)
+               {
+                   telaPac = new FormPaciente();
+                   telaPac.setVisible(true);
+                   telaPac.setResizable(false);//Não deixa redimensionar a tela
+               }else
+               {
+                   telaPac.setVisible(true);
+                   telaPac.setResizable(false);
+               }
+              
+           }else
+           {
+               JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate a recepcionista da clínica.");
+           }
+       } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate a recepcionista da clínica."+ex);
+       }
     }//GEN-LAST:event_jMenuItemCadPacientesActionPerformed
 
     private void jButtonFecharBemVindoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFecharBemVindoActionPerformed
@@ -304,6 +332,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate o administrador do sistema."+ex);
        }
     }//GEN-LAST:event_jMenuItemCadUsuariosActionPerformed
+
+    private void jButtonCadPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadPacientesActionPerformed
+        try {
+           conecta.executasql("select *from usuarios where usu_nome='"+jLabelUsuario.getText()+"'");
+           conecta.rs.first();
+           if((conecta.rs.getString("usu_tipo").equals("recepcionista"))||(conecta.rs.getString("usu_tipo").equals("administrador")))
+           {
+               if(telaPac == null)
+               {
+                   telaPac = new FormPaciente();
+                   telaPac.setVisible(true);
+                   telaPac.setResizable(false);//Não deixa redimensionar a tela
+               }else
+               {
+                   telaPac.setVisible(true);
+                   telaPac.setResizable(false);
+               }
+              
+           }else
+           {
+               JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate a recepcionista da clínica.");
+           }
+       } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate a recepcionista da clínica."+ex);
+       }
+    }//GEN-LAST:event_jButtonCadPacientesActionPerformed
 
     /**
      * @param args the command line arguments
