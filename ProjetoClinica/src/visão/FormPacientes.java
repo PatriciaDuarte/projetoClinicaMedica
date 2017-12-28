@@ -1,10 +1,11 @@
 package visão;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 import modeloBeans.BeansPaciente;
+import modeloBeans.ModeloTabela;
 import modeloConection.ConexaoBD;
 import modeloDao.DaoPaciente;
 
@@ -14,11 +15,13 @@ public class FormPacientes extends javax.swing.JFrame
     BeansPaciente pac = new BeansPaciente();
     DaoPaciente dao = new DaoPaciente();
      int flag=0;
+     int resposta =0;
       
     public FormPacientes() 
     {
-        initComponents();
+         initComponents();
          preencherBairros();
+         preencherTabela("select paci_codigo,paci_nome, paci_telefone, paci_rg, bainome from pacientes inner join bairro on paci_baicodigo = baicodigo order by paci_nome ");
     }
     public void preencherBairros()
     {
@@ -62,7 +65,7 @@ public class FormPacientes extends javax.swing.JFrame
         jComboBoxBairro = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTablePacientes = new javax.swing.JTable();
         jButtonNovo = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
@@ -143,7 +146,7 @@ public class FormPacientes extends javax.swing.JFrame
 
         jLabel6.setText("Endereço:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePacientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -154,7 +157,12 @@ public class FormPacientes extends javax.swing.JFrame
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTablePacientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePacientesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTablePacientes);
 
         jButtonNovo.setText("Novo");
         jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +188,11 @@ public class FormPacientes extends javax.swing.JFrame
         });
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Pesquisa:");
 
@@ -229,8 +242,7 @@ public class FormPacientes extends javax.swing.JFrame
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextFieldPesquisa)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButtonBuscar))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)))
+                                        .addComponent(jButtonBuscar))))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
@@ -256,7 +268,8 @@ public class FormPacientes extends javax.swing.JFrame
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel13))
+                            .addComponent(jLabel13)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -335,7 +348,17 @@ public class FormPacientes extends javax.swing.JFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        // TODO add your handling code here:
+        pac.setPesquisar(jTextFieldPesquisa.getText());
+        BeansPaciente pac1 = dao.buscaPaciente(pac);
+        jTextFieldNome.setText(pac1.getNomePac());
+        jTextFieldCodPac.setText(String.valueOf(pac1.getCodPac()));
+        jFormattedTextFieldDtNasc.setText(pac1.getNasc());
+        jFormattedTextFieldRG.setText(pac1.getRg());
+        jFormattedTextFieldTelefone.setText(pac1.getTelefone());
+        jTextFieldRua.setText(pac1.getRua());
+        jFormattedTextFieldCep.setText(pac1.getCep());
+        jTextFieldComplemento.setText(pac1.getComplemento());
+        jComboBoxBairro.setSelectedItem(pac1.getNomeBairro());
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -411,9 +434,75 @@ public class FormPacientes extends javax.swing.JFrame
         
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        resposta = JOptionPane.showConfirmDialog(rootPane, "Deseja realmente excluir?");
+        if(resposta == JOptionPane.YES_OPTION)
+        {
+            pac.setCodPac(Integer.parseInt(jTextFieldCodPac.getText()));
+            dao.Excluir(pac);
+        }          
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jTablePacientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePacientesMouseClicked
+        String nome_paciente = ""+jTablePacientes.getValueAt(jTablePacientes.getSelectedRow(), 1);
+        conex.conexao();
+        conex.executasql("select *from pacientes where paci_nome='"+nome_paciente+"'");
+        try {
+            conex.rs.first();
+            jTextFieldCodPac.setText(String.valueOf(conex.rs.getInt("paci_codigo")));
+            jTextFieldNome.setText(conex.rs.getString("paci_nome"));
+            jFormattedTextFieldDtNasc.setText(conex.rs.getString("paci_nasc"));
+            jFormattedTextFieldRG.setText(conex.rs.getString("paci_rg"));
+            jFormattedTextFieldTelefone.setText(conex.rs.getString("paci_telefone"));
+            jTextFieldRua.setText(conex.rs.getString("paci_rua"));
+            jTextFieldComplemento.setText(conex.rs.getString("paci_complemento"));
+            jFormattedTextFieldCep.setText(conex.rs.getString("paci_cep"));
+            ConexaoBD conexPesquisa = new ConexaoBD();
+            conexPesquisa.conexao();
+            conexPesquisa.executasql("select *from bairro where baicodigo="+conex.rs.getInt("paci_baicodigo"));
+            conexPesquisa.rs.first();
+            jComboBoxBairro.setSelectedItem(conexPesquisa.rs.getString("bainome"));
+        
+        } catch (SQLException ex)
+        {
+            JOptionPane.showMessageDialog(null,"Erro ao selecionar dados"+ ex);
+        }
+    }//GEN-LAST:event_jTablePacientesMouseClicked
+
+    public void preencherTabela(String Sql)
+    {
+        ArrayList dados = new ArrayList();
+        String [] colunas = new String[]{"ID","Nome","Telefone","RG","Bairro"};
+        conex.conexao();
+        conex.executasql(Sql);
+        
+        try{
+            conex.rs.first();
+            do{
+                dados.add(new Object[]{conex.rs.getInt("paci_codigo"),conex.rs.getString("paci_nome"),conex.rs.getString("paci_telefone"),conex.rs.getString("paci_rg"),conex.rs.getString("bainome")});
+               }while(conex.rs.next());
+        }catch(SQLException ex)
+        {
+            JOptionPane.showMessageDialog(rootPane, "Busque por outro médico para preencher tabela!");
+        }
+        ModeloTabela modelo = new ModeloTabela(dados,colunas);
+        jTablePacientes.setModel(modelo);
+        jTablePacientes.getColumnModel().getColumn(0).setPreferredWidth(30);//Tamanho da coluna começa em 0 e a largura da coluna é 23 para o COD
+        jTablePacientes.getColumnModel().getColumn(0).setResizable(false);//Usuário não vai poder aumentar o tamanho da coluna com o mouse
+        jTablePacientes.getColumnModel().getColumn(1).setPreferredWidth(220); //Nome medico
+        jTablePacientes.getColumnModel().getColumn(1).setResizable(false);
+        jTablePacientes.getColumnModel().getColumn(2).setPreferredWidth(110);
+        jTablePacientes.getColumnModel().getColumn(2).setResizable(false);//especialidade
+        jTablePacientes.getColumnModel().getColumn(3).setPreferredWidth(80);//crm
+        jTablePacientes.getColumnModel().getColumn(3).setResizable(false);
+        jTablePacientes.getColumnModel().getColumn(4).setPreferredWidth(90);//crm
+        jTablePacientes.getColumnModel().getColumn(4).setResizable(false);
+        jTablePacientes.getTableHeader().setReorderingAllowed(false);
+        jTablePacientes.setAutoResizeMode(jTablePacientes.AUTO_RESIZE_OFF);//Usuário não vai redimensionar essa tabela
+        jTablePacientes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);//Vai selecionar só um campo da tabela por vez
+        conex.desconecta();
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -475,7 +564,7 @@ public class FormPacientes extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTablePacientes;
     private javax.swing.JTextField jTextFieldCodPac;
     private javax.swing.JTextField jTextFieldComplemento;
     private javax.swing.JTextField jTextFieldNome;

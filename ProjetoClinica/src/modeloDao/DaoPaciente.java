@@ -15,6 +15,8 @@ import modeloConection.ConexaoBD;
 public class DaoPaciente 
 {
     ConexaoBD conex = new ConexaoBD();
+    ConexaoBD conexBairro = new ConexaoBD();
+    String nomeBairro;
     int codBai;
     
     public void Alterar(BeansPaciente pac)
@@ -61,10 +63,10 @@ public class DaoPaciente
             pst.setInt(7, codBai);
             pst.setString(8, pac.getNasc());
             pst.execute();
-            JOptionPane.showMessageDialog(null,"Paciente salvo com sucesso");
+            JOptionPane.showMessageDialog(null,"Cliente salvo com sucesso");
         } catch (SQLException ex)
         {
-            JOptionPane.showMessageDialog(null,"Erro ao salvar paciente."+ex);
+            JOptionPane.showMessageDialog(null,"Erro ao salvar cliente."+ex);
         }
         conex.desconecta();
     }
@@ -84,6 +86,66 @@ public class DaoPaciente
         }
         conex.desconecta();
             
+    }
+    
+    public BeansPaciente buscaPaciente(BeansPaciente pac)
+    {
+        conex.conexao();
+        try 
+        {
+            conex.executasql("select *from pacientes where paci_nome like '%"+pac.getPesquisar()+"%'");
+            conex.rs.first();
+            buscaNomeBairro(conex.rs.getInt("paci_baicodigo"));
+            pac.setNomePac(conex.rs.getString("paci_nome"));
+            pac.setCep(conex.rs.getString("paci_cep"));
+            pac.setCodPac(conex.rs.getInt("paci_codigo"));
+            pac.setComplemento(conex.rs.getString("paci_complemento"));
+            pac.setNasc(conex.rs.getString("paci_nasc"));
+            pac.setRg(conex.rs.getString("paci_rg"));
+            pac.setTelefone(conex.rs.getString("paci_telefone"));
+            pac.setRua(conex.rs.getString("paci_rua"));
+            pac.setNomeBairro(nomeBairro);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar Cliente!"+ex);//Mensagem original: Erro ao buscar cliente!
+        }
+        
+        conex.desconecta();
+        return pac;
+    }
+    
+    public void buscaNomeBairro(int cod)
+    {
+        conexBairro.conexao();
+        try
+        {
+            conexBairro.executasql("select *from bairro where baicodigo="+cod);
+            conexBairro.rs.first();
+            nomeBairro = conexBairro.rs.getString("bainome");
+        } catch (SQLException ex) 
+        {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar nome bairro"+ex);
+        }
+        
+        conexBairro.desconecta();       
+    }
+    
+    public void Excluir(BeansPaciente pac)
+    {
+        conex.conexao();
+        try 
+        {
+            PreparedStatement pst = conex.con.prepareStatement("delete from pacientes where paci_codigo=? ");
+            pst.setInt(1, pac.getCodPac());
+            pst.execute();
+            JOptionPane.showMessageDialog(null,"Cliente excluído com sucesso!");//Paciente salvo com sucesso
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao excluir Cliente."+ex);
+        }
+        
+        conex.desconecta();
+        
     }
     
 }
