@@ -14,7 +14,7 @@ public class ConexaoBD
     public Statement stm;//Responsável por realizar a pesquisa no banco de dados
     public ResultSet rs;//Armazenar o resultado dessa pesquisa
     private String driver = "org.postgresql.Driver";//Identifica o nosso serviço de banco de dados
-    private String caminho = "jdbc:postgresql://localhost:5433/projetoclinica";//caminho do banco de dados, onde está o local
+    private String caminho = "jdbc:postgresql://localhost:5432/clinicamedica";//caminho do banco de dados, onde está o local
     private String usuario="postgres";//usuario do banco de dados
     private String senha = "admin";//senha do banco de dados
     public Connection con; //variavel q vai fazer conexão com banco

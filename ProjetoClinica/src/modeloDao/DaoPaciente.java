@@ -107,7 +107,7 @@ public class DaoPaciente
             pac.setNomeBairro(nomeBairro);
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao buscar Cliente!"+ex);//Mensagem original: Erro ao buscar cliente!
+            JOptionPane.showMessageDialog(null, "Cliente não cadastrado!");//Mensagem original: Erro ao buscar cliente!
         }
         
         conex.desconecta();

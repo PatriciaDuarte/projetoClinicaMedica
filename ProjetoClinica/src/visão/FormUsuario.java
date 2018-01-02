@@ -24,6 +24,7 @@ public class FormUsuario extends javax.swing.JFrame {
     public FormUsuario()
     {
         initComponents();
+        setResizable(false);
         preencherTabela("select *from usuarios order by usu_nome");//Vai ordenar a tabela pelo nome do usuario
     }
 
@@ -420,7 +421,7 @@ public class FormUsuario extends javax.swing.JFrame {
         conex.executasql("select *from usuarios where usu_nome='"+nome_usuario+"'");
         try {
             conex.rs.first();
-            jTextFieldCod.setText(String.valueOf(conex.rs.getInt("usu_codigo")));
+            jTextFieldCod.setText(String.valueOf(conex.rs.getInt("usu_cod")));
             jTextFieldUsuario .setText(conex.rs.getString("usu_nome"));
             jComboBoxTipo.setSelectedItem(conex.rs.getString("usu_tipo"));
             jPasswordFieldSenha.setText(conex.rs.getString("usu_senha"));
@@ -453,11 +454,11 @@ public class FormUsuario extends javax.swing.JFrame {
         try{
             conex.rs.first();
             do{
-                dados.add(new Object[]{conex.rs.getInt("usu_codigo"),conex.rs.getString("usu_nome"),conex.rs.getString("usu_senha"),conex.rs.getString("usu_tipo")});
+                dados.add(new Object[]{conex.rs.getInt("usu_cod"),conex.rs.getString("usu_nome"),conex.rs.getString("usu_senha"),conex.rs.getString("usu_tipo")});
                }while(conex.rs.next());
         }catch(SQLException ex)
         {
-            JOptionPane.showMessageDialog(rootPane, "Busque por outro médico para preencher tabela!");
+            JOptionPane.showMessageDialog(rootPane, "Busque por outro usuário para preencher tabela!");
         }
         ModeloTabela modelo = new ModeloTabela(dados,colunas);
         jTableUsuarios.setModel(modelo);

@@ -20,6 +20,7 @@ public class FormPaciente extends javax.swing.JFrame
     public FormPaciente() 
     {
          initComponents();
+         setResizable(false);
          preencherBairros();
          preencherTabela("select paci_codigo,paci_nome, paci_telefone, paci_rg, bainome from pacientes inner join bairro on paci_baicodigo = baicodigo order by paci_nome ");
     }
@@ -690,7 +691,7 @@ public class FormPaciente extends javax.swing.JFrame
                }while(conex.rs.next());
         }catch(SQLException ex)
         {
-            JOptionPane.showMessageDialog(rootPane, "Busque por outro médico para preencher tabela!");
+            JOptionPane.showMessageDialog(rootPane, "Busque por outro paciente para preencher tabela!");
         }
         ModeloTabela modelo = new ModeloTabela(dados,colunas);
         jTablePacientes.setModel(modelo);
