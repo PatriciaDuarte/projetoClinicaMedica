@@ -59,6 +59,21 @@ public class DaoAgenda
         
     }
     
+    public int BuscaCodMedico(String nomeMedico)
+    {
+        conexMedico.conexao();
+        conexMedico.executasql("select *from medicos where nome_medico='"+nomeMedico+"'");
+        try {
+            conexMedico.rs.first();
+            codMed = conexMedico.rs.getInt("cod_medico");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Médico não encontrado.");
+        }
+ 
+        return codMed;
+        
+    }
+    
     public void BuscaPaciente(String nomePaciente)
     {
         conexPaciente.conexao();
