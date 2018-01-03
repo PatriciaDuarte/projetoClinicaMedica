@@ -87,6 +87,19 @@ public class DaoAgenda
  
         conexPaciente.desconecta();
     }
+    public void BuscaAgendamento(BeansAgenda agenda)
+    {
+        conexPaciente.conexao();
+        conexPaciente.executasql("select *from agenda where agenda_data='"+agenda.getData()+"'");
+        try {
+            conexMedico.rs.first();
+            codMed = conexMedico.rs.getInt("cod_medico");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Agendamento não encontrado.");
+        }
+ 
+    }
+    
     public void Alterar(BeansAgenda agenda)
     {
         conex.conexao();
@@ -104,5 +117,20 @@ public class DaoAgenda
         conex.desconecta();
     }
     
-    
+    public BeansAgenda buscaAgendaPorCodigo(int cod)
+    {
+        BeansAgenda agen = new BeansAgenda();
+        conex.conexao();
+        conex.executasql("select *from agenda inner join pacientes on agenda_codpac=paci_codigo inner join medicos on agenda_codmedico=cod_medico where agenda_cod='"+cod+"'");//Mecher aqui para inserir dados dos animais
+        try {
+            conex.rs.first();
+            agen.setNomePac(conex.rs.getString("paci_nome"));
+            agen.setNomeMed(conex.rs.getString("nome_medico"));
+            agen.setMotivo(conex.rs.getString("agenda_motivo"));
+            //Colocar aqui os dados dos animais e criar get e set no BeansAgenda
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,"Erro ao buscar agendamento por código!"+ex);
+        }
+        return agen;
+    }
 }

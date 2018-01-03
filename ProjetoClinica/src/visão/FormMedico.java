@@ -226,7 +226,7 @@ public class FormMedico extends javax.swing.JFrame
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Cadastro de Médicos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

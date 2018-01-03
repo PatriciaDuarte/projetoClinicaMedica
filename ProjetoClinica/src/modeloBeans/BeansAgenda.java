@@ -11,7 +11,7 @@ public class BeansAgenda
     private Date data;
     private String status;
     private String motivo;
-
+    //Inserir aki get e set dos dados dos animais
     /**
      * @return the agendaCod
      */

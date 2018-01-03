@@ -17,6 +17,7 @@ public class FormAgendaMedico extends javax.swing.JFrame {
     String dtHoje;
     String status;
     DaoAgenda daoAgenda = new DaoAgenda();
+    String cod_ag;
     
    public FormAgendaMedico() 
    {
@@ -102,7 +103,7 @@ public class FormAgendaMedico extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Agenda Médico");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -122,9 +123,19 @@ public class FormAgendaMedico extends javax.swing.JFrame {
 
             }
         ));
+        jTablePacienteAgen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePacienteAgenMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTablePacienteAgen);
 
         jButtonAtender.setText("Atender Paciente");
+        jButtonAtender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAtenderActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Agenda Pacientes");
 
@@ -202,6 +213,16 @@ public class FormAgendaMedico extends javax.swing.JFrame {
         String  codigo = String.valueOf(cod);
         preencherTabela("select *from agenda inner join pacientes on agenda_codpac=paci_codigo  inner join medicos on agenda_codmedico=cod_medico where agenda_codmedico='"+codigo+"' and agenda_data='"+dtHoje+"'and agenda_status='"+status+"'");
     }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jTablePacienteAgenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTablePacienteAgenMouseClicked
+        cod_ag = ""+jTablePacienteAgen.getValueAt(jTablePacienteAgen.getSelectedRow(), 0);
+    }//GEN-LAST:event_jTablePacienteAgenMouseClicked
+
+    private void jButtonAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAtenderActionPerformed
+        FormConsulta tela = new FormConsulta(cod_ag);
+        tela.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButtonAtenderActionPerformed
 
     /**
      * @param args the command line arguments

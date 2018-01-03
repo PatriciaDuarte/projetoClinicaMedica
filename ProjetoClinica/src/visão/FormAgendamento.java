@@ -206,7 +206,7 @@ public class FormAgendamento extends javax.swing.JFrame {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Agendamento");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
