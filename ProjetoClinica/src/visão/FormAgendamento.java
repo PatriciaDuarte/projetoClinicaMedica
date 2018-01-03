@@ -4,17 +4,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import modeloBeans.BeansAgenda;
 import modeloBeans.ModeloTabela;
 import modeloConection.ConexaoBD;
+import modeloDao.DaoAgenda;
 
 /**
  *
  * @author patricia
  */
-public class FormAgenda extends javax.swing.JFrame {
+public class FormAgendamento extends javax.swing.JFrame {
 
     ConexaoBD conex = new ConexaoBD();
-    public FormAgenda() {
+    BeansAgenda agenda = new BeansAgenda();
+    public FormAgendamento() {
         setResizable(false);
         initComponents();
         preencherMedicos();
@@ -56,7 +59,7 @@ public class FormAgenda extends javax.swing.JFrame {
         jComboBoxMedicos = new javax.swing.JComboBox<>();
         jButtonFinalizarAgendamento = new javax.swing.JButton();
         jButtonCancelarAgendamento = new javax.swing.JButton();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooserData = new com.toedter.calendar.JDateChooser();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -74,6 +77,7 @@ public class FormAgenda extends javax.swing.JFrame {
         jLabel6.setText("Turno:");
 
         jComboBoxTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Matutino", "Vespertino" }));
+        jComboBoxTurno.setEnabled(false);
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -100,11 +104,28 @@ public class FormAgenda extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTablePacientes);
 
+        jTextFieldMotivo.setEnabled(false);
+
         jComboBoxMedicos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMedicos.setEnabled(false);
 
         jButtonFinalizarAgendamento.setText("Finalizar Agendamento");
+        jButtonFinalizarAgendamento.setEnabled(false);
+        jButtonFinalizarAgendamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFinalizarAgendamentoActionPerformed(evt);
+            }
+        });
 
         jButtonCancelarAgendamento.setText("Cancelar Agendamento");
+        jButtonCancelarAgendamento.setEnabled(false);
+        jButtonCancelarAgendamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarAgendamentoActionPerformed(evt);
+            }
+        });
+
+        jDateChooserData.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,7 +154,7 @@ public class FormAgenda extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jDateChooserData, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -169,7 +190,7 @@ public class FormAgenda extends javax.swing.JFrame {
                         .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jDateChooserData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -231,7 +252,51 @@ public class FormAgenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao selecionar dados"+ex);
         }
         conex.desconecta();
+        jComboBoxTurno.setEnabled(true);
+        jComboBoxMedicos.setEnabled(true);
+        jDateChooserData.setEnabled(true);
+        jTextFieldMotivo.setEnabled(true);
+        jButtonFinalizarAgendamento.setEnabled(true);
+        jButtonCancelarAgendamento.setEnabled(true);
+        
     }//GEN-LAST:event_jTablePacientesMouseClicked
+
+    private void jButtonFinalizarAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarAgendamentoActionPerformed
+        agenda.setNomePac(jTextFieldPaciente.getText());
+        agenda.setNomeMed((String) jComboBoxMedicos.getSelectedItem());
+        agenda.setTurno((String) jComboBoxTurno.getSelectedItem());
+        agenda.setMotivo(jTextFieldMotivo.getText());
+        agenda.setData(jDateChooserData.getDate());
+        agenda.setStatus("Aberto");
+        DaoAgenda dao = new DaoAgenda();
+        dao.Salvar(agenda);
+        
+        dispose();//Agendou, fecha a tela
+        jTextFieldPaciente.setText("");
+        jDateChooserData.setDateFormatString(null);
+        jTextFieldMotivo.setText("");
+        
+        jComboBoxTurno.setEnabled(!true);
+        jComboBoxMedicos.setEnabled(!true);
+        jDateChooserData.setEnabled(!true);
+        jTextFieldMotivo.setEnabled(!true);
+        jButtonFinalizarAgendamento.setEnabled(!true);
+        jButtonCancelarAgendamento.setEnabled(!true);
+        
+    }//GEN-LAST:event_jButtonFinalizarAgendamentoActionPerformed
+
+    private void jButtonCancelarAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarAgendamentoActionPerformed
+        jTextFieldPaciente.setText("");
+        jDateChooserData.setDateFormatString(null);
+        jTextFieldMotivo.setText("");
+        
+        jComboBoxTurno.setEnabled(!true);
+        jComboBoxMedicos.setEnabled(!true);
+        jDateChooserData.setEnabled(!true);
+        jTextFieldMotivo.setEnabled(!true);
+        jButtonFinalizarAgendamento.setEnabled(!true);
+        jButtonCancelarAgendamento.setEnabled(!true);
+    }//GEN-LAST:event_jButtonCancelarAgendamentoActionPerformed
     public void preencherTabela(String Sql)
     {
         ArrayList dados = new ArrayList();
@@ -279,20 +344,21 @@ public class FormAgenda extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormAgendamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormAgendamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormAgendamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormAgenda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormAgendamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormAgenda().setVisible(true);
+                new FormAgendamento().setVisible(true);
             }
         });
     }
@@ -303,7 +369,7 @@ public class FormAgenda extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFinalizarAgendamento;
     private javax.swing.JComboBox<String> jComboBoxMedicos;
     private javax.swing.JComboBox<String> jComboBoxTurno;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooserData;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

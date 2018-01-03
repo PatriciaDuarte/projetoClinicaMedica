@@ -16,6 +16,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
    FormMedico tela = new FormMedico();
    FormUsuario telaUsu = new FormUsuario();
    FormPaciente telaPac = new FormPaciente();
+   FormAgendamento telaAgen = new FormAgendamento();
     public TelaPrincipal(String usuario)
     {
         setResizable(false);//Trava a tela
@@ -60,6 +61,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuRelatorios = new javax.swing.JMenu();
         jMenuFerramentas = new javax.swing.JMenu();
         jMenuItemTelaBemVindo = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,6 +77,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jButtonAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Agenda.png"))); // NOI18N
         jButtonAgenda.setToolTipText("Agendamentos");
+        jButtonAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgendaActionPerformed(evt);
+            }
+        });
         jPanelInternal.add(jButtonAgenda);
         jButtonAgenda.setBounds(0, 190, 120, 100);
 
@@ -196,6 +204,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuFerramentas);
 
+        jMenu1.setText("Agenda");
+
+        jMenuItem1.setText("Agenda Hoje");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
         jMenuSair.setText("Sair");
         jMenuSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -305,8 +325,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuSairMouseClicked
 
     private void jMenuItemCadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCadUsuariosActionPerformed
-       
-       
         try {
            conecta.executasql("select *from usuarios where usu_nome='"+jLabelUsuario.getText()+"'");
            conecta.rs.first();
@@ -359,6 +377,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
        }
     }//GEN-LAST:event_jButtonCadPacientesActionPerformed
 
+    private void jButtonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendaActionPerformed
+         try {
+           conecta.executasql("select *from usuarios where usu_nome='"+jLabelUsuario.getText()+"'");
+           conecta.rs.first();
+           if(conecta.rs.getString("usu_tipo").equals("recepcionista"))
+           {
+                if(telaAgen == null)
+               {
+                   telaAgen = new FormAgendamento();
+                   telaAgen.setVisible(true);
+                   telaAgen.setResizable(false);//Não deixa redimensionar a tela
+               }else
+               {
+                   telaAgen.setVisible(true);
+                   telaAgen.setResizable(false);
+               }
+              
+           }else
+           {
+               JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate a recepcionista da clínica!.");
+           }
+       } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para essa funcionalidade!\n Contate o administrador do sistema."+ex);
+       }
+    }//GEN-LAST:event_jButtonAgendaActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        FormAgenda tela = new FormAgenda();
+        tela.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -409,9 +458,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelFundoTelaPrincipal;
     private javax.swing.JLabel jLabelPainelFundo;
     private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuCadastro;
     private javax.swing.JMenu jMenuFerramentas;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemCadEnfermeiros;
     private javax.swing.JMenuItem jMenuItemCadMedicos;
     private javax.swing.JMenuItem jMenuItemCadPacientes;
