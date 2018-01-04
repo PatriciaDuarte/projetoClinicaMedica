@@ -327,6 +327,7 @@ public class FormAuxiliar extends javax.swing.JFrame {
         jButtonEditar.setEnabled(true);
         jButtonCancelar.setEnabled(true);
         jButtonExcluir.setEnabled(true);
+        jButtonNovo.setEnabled(false);
     }//GEN-LAST:event_jTableAuxiliaresMouseClicked
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed

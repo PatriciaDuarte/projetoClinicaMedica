@@ -57,7 +57,7 @@ public class FormMedico extends javax.swing.JFrame
 
         jLabel2.setText("Nome:");
 
-        jLabel3.setText("CRM:");
+        jLabel3.setText("CRV:");
 
         jLabel4.setText("Especialista:");
 
@@ -136,7 +136,7 @@ public class FormMedico extends javax.swing.JFrame
             }
         });
 
-        jComboBoxEspecialista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cirurgião", "Ginecologista", "Clínico Geral", "Cardiologista", "Urologista", "Neurologista", "Dermatologista", "Nutricionista", "Nutrologista", "Otorrinolaringologista" }));
+        jComboBoxEspecialista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Acumputura", "Anestesiologia", "Cardiologia", "Eletrocardiograma", "Ecocardiograma", "Cirurgia geral e especializada", "Dermatologia", "Diagnósticos por imagem", "Radiologia", "Ultrassonografia", "Ressonância Magnética", "Emergência", "Endocrinologia", "Especialista em gatos", "Geriatria", "Homeopatia", "Nefrologia e Urologia", "Neurologia", "Nutrição", "Odontologia", "Oftalmologia", "Oncologia", "Ortopedia", "Terapia utensiva(UTI)", " " }));
         jComboBoxEspecialista.setEnabled(false);
         jComboBoxEspecialista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,21 +227,20 @@ public class FormMedico extends javax.swing.JFrame
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Cadastro de Médicos");
+        jLabel1.setText("Cadastro de Médicos Veterinários");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(jLabel1)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(182, 182, 182))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,6 +293,7 @@ public class FormMedico extends javax.swing.JFrame
         jButtonEditar.setEnabled(true);
         jButtonCancelar.setEnabled(true);
         jButtonExcluir.setEnabled(true);
+        jButtonNovo.setEnabled(false);
     }//GEN-LAST:event_jTableMedicosMouseClicked
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
@@ -356,7 +356,7 @@ public class FormMedico extends javax.swing.JFrame
         }else
         if(jFormattedTextFieldCrm.getText().isEmpty())
         {
-            JOptionPane.showMessageDialog(null,"Preencha o CRM para continuar.");
+            JOptionPane.showMessageDialog(null,"Preencha o CRV para continuar.");
             jFormattedTextFieldCrm.requestFocus();
         }else
         if(flag == 1)
@@ -415,7 +415,7 @@ public class FormMedico extends javax.swing.JFrame
     public void preencherTabela(String Sql)
     {
         ArrayList dados = new ArrayList();
-        String [] colunas = new String[]{"ID","Nome","Especialidade","Crm"};
+        String [] colunas = new String[]{"ID","Nome","Especialidade","CRV"};
         conex.conexao();
         conex.executasql(Sql);
         

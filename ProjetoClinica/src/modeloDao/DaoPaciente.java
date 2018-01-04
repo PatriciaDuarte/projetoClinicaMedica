@@ -26,7 +26,7 @@ public class DaoPaciente
         conex.conexao();
         try {
             //Fazer um insert
-            PreparedStatement pst = conex.con.prepareStatement("update pacientes set paci_nome=?,paci_rg=?,paci_telefone=?,paci_rua=?,paci_cep=?,paci_complemento=?,paci_baicodigo=?,paci_nasc=? where paci_codigo=?");//Passando as colunas e parametros
+            PreparedStatement pst = conex.con.prepareStatement("update pacientes set paci_nome=?,paci_rg=?,paci_telefone=?,paci_dadosanimais=?,paci_rua=?,paci_cep=?,paci_complemento=?,paci_baicodigo=?,paci_nasc=? where paci_codigo=?");//Passando as colunas e parametros
             pst.setString(1, pac.getNomePac());
             pst.setString(2, pac.getRg());
             pst.setString(3, pac.getTelefone());
@@ -36,11 +36,12 @@ public class DaoPaciente
             pst.setInt(7, codBai);
             pst.setString(8, pac.getNasc());
             pst.setInt(9, pac.getCodPac());
+            pst.setString(10, pac.getDadosAnimal());
             pst.execute();
-            JOptionPane.showMessageDialog(null,"Paciente alterado com sucesso");
+            JOptionPane.showMessageDialog(null,"Cliente alterado com sucesso");
         } catch (SQLException ex)
         {
-            JOptionPane.showMessageDialog(null,"Erro ao alterar paciente."+ex);
+            JOptionPane.showMessageDialog(null,"Erro ao alterar cliente."+ex);
         }
         conex.desconecta();
     }
@@ -53,7 +54,7 @@ public class DaoPaciente
         conex.conexao();
         try {
             //Fazer um insert
-            PreparedStatement pst = conex.con.prepareStatement("insert into pacientes(paci_nome,paci_rg,paci_telefone,paci_rua,paci_cep,paci_complemento,paci_baicodigo,paci_nasc) values (?,?,?,?,?,?,?,?)");//Passando as colunas e parametros
+            PreparedStatement pst = conex.con.prepareStatement("insert into pacientes(paci_nome,paci_rg,paci_telefone,paci_dadosanimais,paci_rua,paci_cep,paci_complemento,paci_baicodigo,paci_nasc) values (?,?,?,?,?,?,?,?,?)");//Passando as colunas e parametros
             pst.setString(1, pac.getNomePac());
             pst.setString(2, pac.getRg());
             pst.setString(3, pac.getTelefone());
@@ -62,6 +63,7 @@ public class DaoPaciente
             pst.setString(6, pac.getComplemento());
             pst.setInt(7, codBai);
             pst.setString(8, pac.getNasc());
+            pst.setString(9, pac.getDadosAnimal());
             pst.execute();
             JOptionPane.showMessageDialog(null,"Cliente salvo com sucesso");
         } catch (SQLException ex)
@@ -105,6 +107,7 @@ public class DaoPaciente
             pac.setTelefone(conex.rs.getString("paci_telefone"));
             pac.setRua(conex.rs.getString("paci_rua"));
             pac.setNomeBairro(nomeBairro);
+            pac.setDadosAnimal(conex.rs.getString("paci_dadosanimais"));
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Cliente não cadastrado!");//Mensagem original: Erro ao buscar cliente!

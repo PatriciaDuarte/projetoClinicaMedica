@@ -75,10 +75,10 @@ public class FormPaciente extends javax.swing.JFrame
         jLabel11 = new javax.swing.JLabel();
         jTextFieldPesquisa = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jButtonAnimal = new javax.swing.JButton();
         jButtonBuscar = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jTextFieldCodPac = new javax.swing.JTextField();
+        jTextFieldDadosAnimais = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -153,14 +153,14 @@ public class FormPaciente extends javax.swing.JFrame
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldRua, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                     .addComponent(jTextFieldComplemento))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jFormattedTextFieldCep)
-                    .addComponent(jComboBoxBairro, 0, 146, Short.MAX_VALUE))
+                    .addComponent(jComboBoxBairro, 0, 190, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -243,9 +243,6 @@ public class FormPaciente extends javax.swing.JFrame
 
         jLabel12.setText("Inserir dados dos animais:");
 
-        jButtonAnimal.setText("<<Clique aqui>>");
-        jButtonAnimal.setEnabled(false);
-
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +254,13 @@ public class FormPaciente extends javax.swing.JFrame
 
         jTextFieldCodPac.setEnabled(false);
 
+        jTextFieldDadosAnimais.setEnabled(false);
+        jTextFieldDadosAnimais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDadosAnimaisActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -264,56 +268,58 @@ public class FormPaciente extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jFormattedTextFieldRG, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonAnimal))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel13))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextFieldCodPac, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel12)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jFormattedTextFieldDtNasc)
-                            .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
-                        .addGap(32, 32, 32))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 26, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonNovo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAlterar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonNovo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonAlterar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jTextFieldPesquisa)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButtonBuscar))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel6)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                                .addComponent(jTextFieldDadosAnimais, javax.swing.GroupLayout.PREFERRED_SIZE, 726, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel13))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldPesquisa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonBuscar))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextFieldNome)
+                                            .addComponent(jFormattedTextFieldRG, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel5))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jFormattedTextFieldDtNasc)
+                                            .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTextFieldCodPac, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(42, 42, 42))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,10 +341,10 @@ public class FormPaciente extends javax.swing.JFrame
                     .addComponent(jFormattedTextFieldRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jFormattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jButtonAnimal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel12)
+                .addGap(10, 10, 10)
+                .addComponent(jTextFieldDadosAnimais, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,7 +366,7 @@ public class FormPaciente extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonExcluir))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -371,26 +377,24 @@ public class FormPaciente extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(272, 272, 272)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(329, 329, 329)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(4, 4, 4)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(747, 640));
+        setSize(new java.awt.Dimension(883, 665));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -403,10 +407,10 @@ public class FormPaciente extends javax.swing.JFrame
             jFormattedTextFieldRG.setEnabled(!true);
             jFormattedTextFieldTelefone.setEnabled(!true);
             jComboBoxBairro.setEnabled(!true);
+            jTextFieldDadosAnimais.setEnabled(!true);
         
             jButtonCancelar.setEnabled(true);
             jButtonSalvar.setEnabled(!true);
-            jButtonAnimal.setEnabled(!true);//Habilita botão que vai chamar classe animal
             jButtonNovo.setEnabled(false);
             jButtonAlterar.setEnabled(!false);
             jButtonExcluir.setEnabled(!false);
@@ -423,6 +427,7 @@ public class FormPaciente extends javax.swing.JFrame
         jFormattedTextFieldCep.setText(pac1.getCep());
         jTextFieldComplemento.setText(pac1.getComplemento());
         jComboBoxBairro.setSelectedItem(pac1.getNomeBairro());
+        jTextFieldDadosAnimais.setText(pac1.getDadosAnimal());
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
@@ -445,6 +450,11 @@ public class FormPaciente extends javax.swing.JFrame
         {
             JOptionPane.showMessageDialog(null,"Preencha o telefone para continuar.");
             jFormattedTextFieldTelefone.requestFocus();
+        }else
+            if(jTextFieldDadosAnimais.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Preencha os dados do animal para continuar.");
+            jTextFieldDadosAnimais.requestFocus();
         }else
         if(jTextFieldRua.getText().isEmpty())
         {
@@ -471,8 +481,9 @@ public class FormPaciente extends javax.swing.JFrame
             pac.setNomeBairro((String)jComboBoxBairro.getSelectedItem());
             pac.setTelefone(jFormattedTextFieldTelefone.getText());
             pac.setRua(jTextFieldRua.getText());
+            pac.setDadosAnimal(jTextFieldDadosAnimais.getText());
             dao.Salvar(pac);
-            preencherTabela("select paci_codigo,paci_nome, paci_telefone, paci_rg, bainome from pacientes inner join bairro on paci_baicodigo = baicodigo order by paci_nome ");
+            preencherTabela("select paci_codigo,paci_nome, paci_telefone,paci_rg, bainome from pacientes inner join bairro on paci_baicodigo = baicodigo order by paci_nome ");
             
             //Bloqueia os botoes que não serão usados e campos q não serão usados
             jTextFieldComplemento.setEnabled(!true);
@@ -482,11 +493,11 @@ public class FormPaciente extends javax.swing.JFrame
             jFormattedTextFieldDtNasc.setEnabled(!true);
             jFormattedTextFieldRG.setEnabled(!true);
             jFormattedTextFieldTelefone.setEnabled(!true);
+            jTextFieldDadosAnimais.setEnabled(!true);        ;
             jComboBoxBairro.setEnabled(!true);
         
             jButtonCancelar.setEnabled(!true);
             jButtonSalvar.setEnabled(!true);
-            jButtonAnimal.setEnabled(!true);//Habilita botão que vai chamar classe animal
             jButtonNovo.setEnabled(!false);
             jButtonAlterar.setEnabled(false);
             jButtonExcluir.setEnabled(false);
@@ -497,6 +508,7 @@ public class FormPaciente extends javax.swing.JFrame
             jTextFieldNome.setText("");
             jTextFieldRua.setText("");
             jFormattedTextFieldCep.setText("");
+            jTextFieldDadosAnimais.setText("");
             jFormattedTextFieldDtNasc.setText("");
             jFormattedTextFieldRG.setText("");
             jFormattedTextFieldTelefone.setText("");  
@@ -508,12 +520,13 @@ public class FormPaciente extends javax.swing.JFrame
             pac.setComplemento(jTextFieldComplemento.getText());
             pac.setNasc(jFormattedTextFieldDtNasc.getText());
             pac.setRg(jFormattedTextFieldRG.getText());
+            pac.setDadosAnimal(jTextFieldDadosAnimais.getText());
             pac.setNomeBairro((String)jComboBoxBairro.getSelectedItem());
             pac.setTelefone(jFormattedTextFieldTelefone.getText());
             pac.setRua(jTextFieldRua.getText());
             pac.setCodPac(Integer.parseInt(jTextFieldCodPac.getText()));
             dao.Alterar(pac);
-            preencherTabela("select paci_codigo,paci_nome, paci_telefone, paci_rg, bainome from pacientes inner join bairro on paci_baicodigo = baicodigo order by paci_nome ");
+            preencherTabela("select paci_codigo,paci_nome, paci_telefone, paci_rg, bainome from pacientes inner join bairro on paci_baicodigo = baicodigo order by paci_nome");
             
             //Bloqueia os botoes que não serão usados e campos q não serão usados
             jTextFieldComplemento.setEnabled(!true);
@@ -523,11 +536,11 @@ public class FormPaciente extends javax.swing.JFrame
             jFormattedTextFieldDtNasc.setEnabled(!true);
             jFormattedTextFieldRG.setEnabled(!true);
             jFormattedTextFieldTelefone.setEnabled(!true);
+            jTextFieldDadosAnimais.setEnabled(!true);
             jComboBoxBairro.setEnabled(!true);
         
             jButtonCancelar.setEnabled(!true);
             jButtonSalvar.setEnabled(!true);
-            jButtonAnimal.setEnabled(!true);//Habilita botão que vai chamar classe animal
             jButtonNovo.setEnabled(!false);
             jButtonAlterar.setEnabled(false);
             jButtonExcluir.setEnabled(false);
@@ -537,6 +550,7 @@ public class FormPaciente extends javax.swing.JFrame
             jTextFieldComplemento.setText("");
             jTextFieldNome.setText("");
             jTextFieldRua.setText("");
+            jTextFieldDadosAnimais.setText("");
             jFormattedTextFieldCep.setText("");
             jFormattedTextFieldDtNasc.setText("");
             jFormattedTextFieldRG.setText("");
@@ -555,11 +569,11 @@ public class FormPaciente extends javax.swing.JFrame
         jFormattedTextFieldDtNasc.setEnabled(true);
         jFormattedTextFieldRG.setEnabled(true);
         jFormattedTextFieldTelefone.setEnabled(true);
+        jTextFieldDadosAnimais.setEnabled(true);
         jComboBoxBairro.setEnabled(true);
         
         jButtonCancelar.setEnabled(true);
         jButtonSalvar.setEnabled(true);
-        jButtonAnimal.setEnabled(true);//Habilita botão que vai chamar classe animal
         jButtonNovo.setEnabled(false);
         jButtonAlterar.setEnabled(false);
         jButtonExcluir.setEnabled(false);
@@ -575,11 +589,11 @@ public class FormPaciente extends javax.swing.JFrame
             jFormattedTextFieldDtNasc.setEnabled(true);
             jFormattedTextFieldRG.setEnabled(true);
             jFormattedTextFieldTelefone.setEnabled(true);
+            jTextFieldDadosAnimais.setEnabled(true);
             jComboBoxBairro.setEnabled(true);
         
             jButtonCancelar.setEnabled(true);
             jButtonSalvar.setEnabled(true);
-            jButtonAnimal.setEnabled(true);//Habilita botão que vai chamar classe animal
             jButtonNovo.setEnabled(false);
             jButtonAlterar.setEnabled(false);
             jButtonExcluir.setEnabled(false);
@@ -603,6 +617,7 @@ public class FormPaciente extends javax.swing.JFrame
             jFormattedTextFieldDtNasc.setText("");
             jFormattedTextFieldRG.setText("");
             jFormattedTextFieldTelefone.setText("");            
+            jTextFieldDadosAnimais.setText("");
             
             //Habilita e desabilita campos que serão ou não serão usados
             jTextFieldComplemento.setEnabled(true);
@@ -613,10 +628,10 @@ public class FormPaciente extends javax.swing.JFrame
             jFormattedTextFieldRG.setEnabled(true);
             jFormattedTextFieldTelefone.setEnabled(true);
             jComboBoxBairro.setEnabled(true);
-        
+            jTextFieldDadosAnimais.setEnabled(true);
+            
             jButtonCancelar.setEnabled(true);
             jButtonSalvar.setEnabled(true);
-            jButtonAnimal.setEnabled(true);//Habilita botão que vai chamar classe animal
             jButtonNovo.setEnabled(false);
             jButtonAlterar.setEnabled(false);
             jButtonExcluir.setEnabled(false);
@@ -637,6 +652,7 @@ public class FormPaciente extends javax.swing.JFrame
             jTextFieldRua.setText(conex.rs.getString("paci_rua"));
             jTextFieldComplemento.setText(conex.rs.getString("paci_complemento"));
             jFormattedTextFieldCep.setText(conex.rs.getString("paci_cep"));
+            jTextFieldDadosAnimais.setText(conex.rs.getString("paci_dadosanimais"));
             ConexaoBD conexPesquisa = new ConexaoBD();
             conexPesquisa.conexao();
             conexPesquisa.executasql("select *from bairro where baicodigo="+conex.rs.getInt("paci_baicodigo"));
@@ -658,9 +674,11 @@ public class FormPaciente extends javax.swing.JFrame
             jFormattedTextFieldDtNasc.setText("");
             jFormattedTextFieldRG.setText("");
             jFormattedTextFieldTelefone.setText("");  
+            jTextFieldDadosAnimais.setText("");
             
             jTextFieldComplemento.setEnabled(!true);
             jTextFieldNome.setEnabled(!true);
+            jTextFieldDadosAnimais.setEnabled(!true);
             jTextFieldRua.setEnabled(!true);
             jFormattedTextFieldCep.setEnabled(!true);
             jFormattedTextFieldDtNasc.setEnabled(!true);
@@ -670,12 +688,15 @@ public class FormPaciente extends javax.swing.JFrame
         
             jButtonCancelar.setEnabled(!true);
             jButtonSalvar.setEnabled(!true);
-            jButtonAnimal.setEnabled(!true);//Habilita botão que vai chamar classe animal
             jButtonNovo.setEnabled(!false);
             jButtonAlterar.setEnabled(false);
             jButtonExcluir.setEnabled(false);
         
     }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jTextFieldDadosAnimaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDadosAnimaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDadosAnimaisActionPerformed
 
     public void preencherTabela(String Sql)
     {
@@ -746,7 +767,6 @@ public class FormPaciente extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlterar;
-    private javax.swing.JButton jButtonAnimal;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonExcluir;
@@ -776,6 +796,7 @@ public class FormPaciente extends javax.swing.JFrame
     private javax.swing.JTable jTablePacientes;
     private javax.swing.JTextField jTextFieldCodPac;
     private javax.swing.JTextField jTextFieldComplemento;
+    private javax.swing.JTextField jTextFieldDadosAnimais;
     private javax.swing.JTextField jTextFieldNome;
     private javax.swing.JTextField jTextFieldPesquisa;
     private javax.swing.JTextField jTextFieldRua;

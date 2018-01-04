@@ -32,6 +32,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jTextFieldUsuario = new javax.swing.JTextField();
         jPasswordFieldSenha = new javax.swing.JPasswordField();
         jLabelLogoCanal = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         LabelFundoLogin = new javax.swing.JLabel();
 
         jTextArea1.setColumns(20);
@@ -48,7 +50,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonAcessar);
-        jButtonAcessar.setBounds(290, 120, 90, 30);
+        jButtonAcessar.setBounds(300, 120, 90, 30);
 
         jButtonSair.setText("Sair");
         jButtonSair.addActionListener(new java.awt.event.ActionListener() {
@@ -57,15 +59,15 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonSair);
-        jButtonSair.setBounds(390, 120, 60, 30);
+        jButtonSair.setBounds(400, 120, 60, 30);
 
         jLabelSenha.setText("Senha:");
         getContentPane().add(jLabelSenha);
-        jLabelSenha.setBounds(240, 90, 50, 14);
+        jLabelSenha.setBounds(250, 90, 50, 14);
 
         jLabelUsuario.setText("Usuário:");
         getContentPane().add(jLabelUsuario);
-        jLabelUsuario.setBounds(240, 50, 50, 14);
+        jLabelUsuario.setBounds(250, 50, 50, 14);
 
         jTextFieldUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,19 +75,29 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jTextFieldUsuario);
-        jTextFieldUsuario.setBounds(290, 40, 160, 30);
+        jTextFieldUsuario.setBounds(300, 40, 160, 30);
         getContentPane().add(jPasswordFieldSenha);
-        jPasswordFieldSenha.setBounds(290, 80, 160, 30);
+        jPasswordFieldSenha.setBounds(300, 80, 160, 30);
 
         jLabelLogoCanal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoClinica.jpg"))); // NOI18N
         getContentPane().add(jLabelLogoCanal);
-        jLabelLogoCanal.setBounds(0, 10, 260, 170);
+        jLabelLogoCanal.setBounds(-10, -40, 240, 260);
 
-        LabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundotelaLogin.png"))); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel1.setText("MW5 SOFTWARE");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(200, 200, 100, 30);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(jPanel2);
+        jPanel2.setBounds(240, 30, 230, 130);
+
+        LabelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo_1.png"))); // NOI18N
+        LabelFundoLogin.setText("MW5 SOFTWARE");
         getContentPane().add(LabelFundoLogin);
-        LabelFundoLogin.setBounds(0, 0, 510, 220);
+        LabelFundoLogin.setBounds(0, 0, 500, 240);
 
-        setSize(new java.awt.Dimension(515, 251));
+        setSize(new java.awt.Dimension(513, 272));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -110,7 +122,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         } catch (SQLException ex) 
         {
-            JOptionPane.showMessageDialog(rootPane,"Senha ou usuários inválidos!"+ex);
+            JOptionPane.showMessageDialog(rootPane,"Senha ou usuários inválidos!");
         }
     }//GEN-LAST:event_jButtonAcessarActionPerformed
 
@@ -132,9 +144,11 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel LabelFundoLogin;
     private javax.swing.JButton jButtonAcessar;
     private javax.swing.JButton jButtonSair;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelLogoCanal;
     private javax.swing.JLabel jLabelSenha;
     private javax.swing.JLabel jLabelUsuario;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordFieldSenha;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;

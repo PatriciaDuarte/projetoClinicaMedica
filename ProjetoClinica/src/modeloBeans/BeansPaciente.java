@@ -13,6 +13,7 @@ public class BeansPaciente {
     private String cep;
     private String nomeBairro;
     private String pesquisar;
+    private String dadosAnimal;
 
     /**
      * @return the codPac
@@ -152,6 +153,20 @@ public class BeansPaciente {
      */
     public void setPesquisar(String pesquisar) {
         this.pesquisar = pesquisar;
+    }
+
+    /**
+     * @return the dadosAnimal
+     */
+    public String getDadosAnimal() {
+        return dadosAnimal;
+    }
+
+    /**
+     * @param dadosAnimal the dadosAnimal to set
+     */
+    public void setDadosAnimal(String dadosAnimal) {
+        this.dadosAnimal = dadosAnimal;
     }
     
 }
