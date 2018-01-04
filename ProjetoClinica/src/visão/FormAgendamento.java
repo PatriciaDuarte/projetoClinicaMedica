@@ -108,6 +108,11 @@ public class FormAgendamento extends javax.swing.JFrame {
 
         jComboBoxMedicos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxMedicos.setEnabled(false);
+        jComboBoxMedicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMedicosActionPerformed(evt);
+            }
+        });
 
         jButtonFinalizarAgendamento.setText("Finalizar Agendamento");
         jButtonFinalizarAgendamento.setEnabled(false);
@@ -297,6 +302,10 @@ public class FormAgendamento extends javax.swing.JFrame {
         jButtonFinalizarAgendamento.setEnabled(!true);
         jButtonCancelarAgendamento.setEnabled(!true);
     }//GEN-LAST:event_jButtonCancelarAgendamentoActionPerformed
+
+    private void jComboBoxMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMedicosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMedicosActionPerformed
     public void preencherTabela(String Sql)
     {
         ArrayList dados = new ArrayList();

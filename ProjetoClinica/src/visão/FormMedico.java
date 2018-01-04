@@ -292,6 +292,7 @@ public class FormMedico extends javax.swing.JFrame
 
         conex.desconecta();
         jButtonEditar.setEnabled(true);
+        jButtonCancelar.setEnabled(true);
         jButtonExcluir.setEnabled(true);
     }//GEN-LAST:event_jTableMedicosMouseClicked
 

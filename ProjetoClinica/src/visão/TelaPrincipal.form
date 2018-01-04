@@ -19,7 +19,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCadPacientes">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pacientes"/>
+                <Property name="text" type="java.lang.String" value="Clientes"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCadPacientesActionPerformed"/>
@@ -27,8 +27,11 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCadEnfermeiros">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Enfermeiros"/>
+                <Property name="text" type="java.lang.String" value="Auxiliares"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItemCadEnfermeirosActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCadUsuarios">
               <Properties>
@@ -194,7 +197,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagens/CadMedicos.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="M&#xe9;dicos"/>
+                <Property name="toolTipText" type="java.lang.String" value="M&#xe9;dicos Veterin&#xe1;rios"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadMedActionPerformed"/>
@@ -210,8 +213,11 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagens/icon-infermeira.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Enfermeiros"/>
+                <Property name="toolTipText" type="java.lang.String" value="Auxiilar Veterin&#xe1;rio e PetShop"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadEnfermeirosActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="120" y="40" width="120" height="120"/>
@@ -223,7 +229,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagens/cadPacientes.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Pacientes"/>
+                <Property name="toolTipText" type="java.lang.String" value="Clientes"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCadPacientesActionPerformed"/>

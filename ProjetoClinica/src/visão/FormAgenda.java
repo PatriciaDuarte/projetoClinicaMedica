@@ -58,7 +58,7 @@ public class FormAgenda extends javax.swing.JFrame {
                }while(conex.rs.next());
         }catch(SQLException ex)
         {
-            JOptionPane.showMessageDialog(rootPane, "Busque por outro médico para preencher tabela!");
+            JOptionPane.showMessageDialog(rootPane, "Não possui pacientes para serem atendidos!");
         }
         ModeloTabela modelo = new ModeloTabela(dados,colunas);
         jTableAgenda.setModel(modelo);
