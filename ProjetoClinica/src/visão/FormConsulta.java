@@ -24,6 +24,7 @@ public class FormConsulta extends javax.swing.JFrame {
         jTextFieldNome.setText(agen.getNomePac());
         jTextFieldMotivo.setText(agen.getMotivo());
         jLabelNomeMedico.setText(agen.getNomeMed());
+        jTextFieldDadosAnimal.setText(agen.getDadosAnimais());
         //Acrescentar dados dos animais aqui
    }
 

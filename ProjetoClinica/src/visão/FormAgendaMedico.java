@@ -64,7 +64,7 @@ public class FormAgendaMedico extends javax.swing.JFrame {
                }while(conex.rs.next());
         }catch(SQLException ex)
         {
-            JOptionPane.showMessageDialog(rootPane, "Não existem mais agendamentos para este médico.");
+            JOptionPane.showMessageDialog(rootPane, "Não existem mais agendamentos para hoje.");
         }
         ModeloTabela modelo = new ModeloTabela(dados,colunas);
         jTablePacienteAgen.setModel(modelo);

@@ -54,7 +54,7 @@ public class DaoPaciente
         conex.conexao();
         try {
             //Fazer um insert
-            PreparedStatement pst = conex.con.prepareStatement("insert into pacientes(paci_nome,paci_rg,paci_telefone,paci_dadosanimais,paci_rua,paci_cep,paci_complemento,paci_baicodigo,paci_nasc) values (?,?,?,?,?,?,?,?,?)");//Passando as colunas e parametros
+            PreparedStatement pst = conex.con.prepareStatement("insert into pacientes(paci_nome,paci_rg,paci_telefone,paci_rua,paci_cep,paci_complemento,paci_baicodigo,paci_nasc,paci_dadosanimais) values (?,?,?,?,?,?,?,?,?)");//Passando as colunas e parametros
             pst.setString(1, pac.getNomePac());
             pst.setString(2, pac.getRg());
             pst.setString(3, pac.getTelefone());
@@ -76,11 +76,12 @@ public class DaoPaciente
     public void buscaBaiCod(String nome)
     {
         conex.conexao();
-        conex.executasql("select *from bairro where bainome = '"+nome+"'");
+        conex.executasql("select * from bairro where bainome = '"+nome+"'");
         try 
         {
             conex.rs.first();
             codBai = conex.rs.getInt("baicodigo");
+            
             
         } catch (SQLException ex) 
         {
@@ -122,7 +123,7 @@ public class DaoPaciente
         conexBairro.conexao();
         try
         {
-            conexBairro.executasql("select *from bairro where baicodigo="+cod);
+            conexBairro.executasql("select * from bairro where baicodigo="+cod);
             conexBairro.rs.first();
             nomeBairro = conexBairro.rs.getString("bainome");
         } catch (SQLException ex) 

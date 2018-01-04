@@ -11,7 +11,7 @@ public class BeansAgenda
     private Date data;
     private String status;
     private String motivo;
-    //Inserir aki get e set dos dados dos animais
+    private String dadosAnimais;
     /**
      * @return the agendaCod
      */
@@ -108,6 +108,20 @@ public class BeansAgenda
      */
     public void setMotivo(String motivo) {
         this.motivo = motivo;
+    }
+
+    /**
+     * @return the dadosAnimais
+     */
+    public String getDadosAnimais() {
+        return dadosAnimais;
+    }
+
+    /**
+     * @param dadosAnimais the dadosAnimais to set
+     */
+    public void setDadosAnimais(String dadosAnimais) {
+        this.dadosAnimais = dadosAnimais;
     }
     
     

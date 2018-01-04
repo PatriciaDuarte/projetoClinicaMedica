@@ -663,6 +663,10 @@ public class FormPaciente extends javax.swing.JFrame
         {
             JOptionPane.showMessageDialog(null,"Erro ao selecionar dados"+ ex);
         }
+        
+        jButtonAlterar.setEnabled(true);
+        jButtonCancelar.setEnabled(true);
+        jButtonNovo.setEnabled(false);
     }//GEN-LAST:event_jTablePacientesMouseClicked
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -712,7 +716,7 @@ public class FormPaciente extends javax.swing.JFrame
                }while(conex.rs.next());
         }catch(SQLException ex)
         {
-            JOptionPane.showMessageDialog(rootPane, "Busque por outro paciente para preencher tabela!");
+           // JOptionPane.showMessageDialog(rootPane, "Busque por outro paciente para preencher tabela!");
         }
         ModeloTabela modelo = new ModeloTabela(dados,colunas);
         jTablePacientes.setModel(modelo);
