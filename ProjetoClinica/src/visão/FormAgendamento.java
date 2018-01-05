@@ -267,7 +267,11 @@ public class FormAgendamento extends javax.swing.JFrame {
     }//GEN-LAST:event_jTablePacientesMouseClicked
 
     private void jButtonFinalizarAgendamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarAgendamentoActionPerformed
-        agenda.setNomePac(jTextFieldPaciente.getText());
+        if(jTextFieldMotivo.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Preencha o motivo para continuar.");
+            jTextFieldMotivo.requestFocus();
+        }
         agenda.setNomeMed((String) jComboBoxMedicos.getSelectedItem());
         agenda.setTurno((String) jComboBoxTurno.getSelectedItem());
         agenda.setMotivo(jTextFieldMotivo.getText());

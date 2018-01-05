@@ -25,12 +25,12 @@ public class DaoAgenda
     
     public void Salvar(BeansAgenda agenda)
     {
-        BuscaMedico(agenda.getNomeMed());
         BuscaPaciente(agenda.getNomePac());
+        BuscaMedico(agenda.getNomeMed());
         BuscaDadosAnimais(agenda.getDadosAnimais());
         conex.conexao();
         try {
-            PreparedStatement pst = conex.con.prepareStatement("insert into agenda (agenda_codpac, agenda_codmedico, agenda_motivo, agenda_turno, agenda_data, agenda_status,agenda_dadosanimais) values (?,?,?,?,?,?,?)");
+            PreparedStatement pst = conex.con.prepareStatement("insert into agenda(agenda_codpac, agenda_codmedico, agenda_motivo, agenda_turno, agenda_data, agenda_status,agenda_dadosanimais) values (?,?,?,?,?,?,?)");
             pst.setInt(1, codPac);
             pst.setInt(2, codMed);
             pst.setString(3, agenda.getMotivo());
