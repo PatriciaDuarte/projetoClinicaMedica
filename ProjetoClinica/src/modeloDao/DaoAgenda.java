@@ -27,15 +27,17 @@ public class DaoAgenda
     {
         BuscaMedico(agenda.getNomeMed());
         BuscaPaciente(agenda.getNomePac());
+        BuscaDadosAnimais(agenda.getDadosAnimais());
         conex.conexao();
         try {
-            PreparedStatement pst = conex.con.prepareStatement("insert into agenda (agenda_codpac, agenda_codmedico, agenda_motivo, agenda_turno, agenda_data, agenda_status) values (?,?,?,?,?,?)");
+            PreparedStatement pst = conex.con.prepareStatement("insert into agenda (agenda_codpac, agenda_codmedico, agenda_motivo, agenda_turno, agenda_data, agenda_status,agenda_dadosanimais) values (?,?,?,?,?,?,?)");
             pst.setInt(1, codPac);
             pst.setInt(2, codMed);
             pst.setString(3, agenda.getMotivo());
             pst.setString(4, agenda.getTurno());
             pst.setDate(5, new java.sql.Date(agenda.getData().getTime()));
             pst.setString(6, agenda.getStatus());
+            pst.setString(7, agenda.getDadosAnimais());
             pst.execute();
             JOptionPane.showMessageDialog(null,"Agendamento marcado com sucesso!");
         } catch (SQLException ex) {
@@ -77,12 +79,25 @@ public class DaoAgenda
     public void BuscaPaciente(String nomePaciente)
     {
         conexPaciente.conexao();
-        conexPaciente.executasql("select *from pacientes where paci_nome='"+nomePaciente+"'");
+        conexPaciente.executasql("select *from pacientes where paci_nome='"+nomePaciente+"'");//Mecher aqui
         try {
             conexPaciente.rs.first();
             codPac = conexPaciente.rs.getInt("paci_codigo");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"Paciente não encontrado.");
+            JOptionPane.showMessageDialog(null,"Cliente não encontrado.");
+        }
+ 
+        conexPaciente.desconecta();
+    }
+        public void BuscaDadosAnimais(String dadosanimal)
+    {
+        conexPaciente.conexao();
+        conexPaciente.executasql("select *from pacientes where paci_dadosanimais='"+dadosanimal+"'");//Mecher aqui
+        try {
+            conexPaciente.rs.first();
+            codPac = conexPaciente.rs.getInt("paci_codigo");
+        } catch (SQLException ex) {
+            //JOptionPane.showMessageDialog(null,"Dados do animal do cliente não encontrado.");
         }
  
         conexPaciente.desconecta();
@@ -127,6 +142,7 @@ public class DaoAgenda
             agen.setNomePac(conex.rs.getString("paci_nome"));
             agen.setNomeMed(conex.rs.getString("nome_medico"));
             agen.setMotivo(conex.rs.getString("agenda_motivo"));
+            agen.setDadosAnimais(conex.rs.getString("paci_dadosanimais"));
             //Colocar aqui os dados dos animais e criar get e set no BeansAgenda
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao buscar agendamento por código!"+ex);

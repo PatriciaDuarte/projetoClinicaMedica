@@ -620,21 +620,21 @@ public class FormPaciente extends javax.swing.JFrame
             jTextFieldDadosAnimais.setText("");
             
             //Habilita e desabilita campos que serão ou não serão usados
-            jTextFieldComplemento.setEnabled(true);
-            jTextFieldNome.setEnabled(true);
-            jTextFieldRua.setEnabled(true);
-            jFormattedTextFieldCep.setEnabled(true);
-            jFormattedTextFieldDtNasc.setEnabled(true);
-            jFormattedTextFieldRG.setEnabled(true);
-            jFormattedTextFieldTelefone.setEnabled(true);
-            jComboBoxBairro.setEnabled(true);
-            jTextFieldDadosAnimais.setEnabled(true);
+            jTextFieldComplemento.setEnabled(!true);
+            jTextFieldNome.setEnabled(!true);
+            jTextFieldRua.setEnabled(!true);
+            jFormattedTextFieldCep.setEnabled(!true);
+            jFormattedTextFieldDtNasc.setEnabled(!true);
+            jFormattedTextFieldRG.setEnabled(!true);
+            jFormattedTextFieldTelefone.setEnabled(!true);
+            jComboBoxBairro.setEnabled(!true);
+            jTextFieldDadosAnimais.setEnabled(!true);
             
-            jButtonCancelar.setEnabled(true);
-            jButtonSalvar.setEnabled(true);
-            jButtonNovo.setEnabled(false);
-            jButtonAlterar.setEnabled(false);
-            jButtonExcluir.setEnabled(false);
+            jButtonCancelar.setEnabled(!true);
+            jButtonSalvar.setEnabled(!true);
+            jButtonNovo.setEnabled(!false);
+            jButtonAlterar.setEnabled(!false);
+            jButtonExcluir.setEnabled(!false);
         }          
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -666,7 +666,9 @@ public class FormPaciente extends javax.swing.JFrame
         
         jButtonAlterar.setEnabled(true);
         jButtonCancelar.setEnabled(true);
+        jButtonExcluir.setEnabled(true);
         jButtonNovo.setEnabled(false);
+       
     }//GEN-LAST:event_jTablePacientesMouseClicked
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
