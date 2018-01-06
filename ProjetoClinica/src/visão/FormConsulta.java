@@ -201,8 +201,8 @@ public class FormConsulta extends javax.swing.JFrame {
          String src = "report1.jasper";
          JasperPrint jasperPrint = null;
         try {
-            conex.rs.first();
-         //  jasperPrint = JasperFillManager.fillReport(src,null,);
+            conex.rs.first();//VOLTAR MECHER AQUI
+        //   jasperPrint = JasperFillManager.fillReport(src,null);
         } catch (SQLException ex) {
             Logger.getLogger(FormConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
