@@ -1,8 +1,17 @@
 package visão;
 
-import javax.swing.JFormattedTextField;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modeloBeans.BeansAgenda;
+import modeloConection.ConexaoBD;
 import modeloDao.DaoAgenda;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+
+
 
 /**
  *
@@ -13,6 +22,7 @@ public class FormConsulta extends javax.swing.JFrame {
     String cod_agenda;
     BeansAgenda agen = new BeansAgenda();
     DaoAgenda daoAgenda = new DaoAgenda();
+    ConexaoBD conex = new ConexaoBD();
     
     public FormConsulta(String codigo) 
     {
@@ -50,7 +60,7 @@ public class FormConsulta extends javax.swing.JFrame {
         jLabelNomeMedico = new javax.swing.JLabel();
         jTextFieldDiagnostico = new javax.swing.JTextField();
         jTextFieldReceita = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonFinalizarConsulta = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -116,7 +126,12 @@ public class FormConsulta extends javax.swing.JFrame {
 
         jLabel7.setText("Receita:");
 
-        jButton1.setText("Finalizar Consulta");
+        jButtonFinalizarConsulta.setText("Finalizar Consulta");
+        jButtonFinalizarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFinalizarConsultaActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Formulário de consulta médica");
@@ -140,7 +155,7 @@ public class FormConsulta extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldDiagnostico, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonFinalizarConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -172,13 +187,27 @@ public class FormConsulta extends javax.swing.JFrame {
                     .addComponent(jTextFieldReceita, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jButtonFinalizarConsulta)
                 .addContainerGap())
         );
 
         setSize(new java.awt.Dimension(858, 712));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonFinalizarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFinalizarConsultaActionPerformed
+        conex.conexao();
+        conex.executasql("select * from consulta");
+         String src = "report1.jasper";
+         JasperPrint jasperPrint = null;
+        try {
+            conex.rs.first();
+         //  jasperPrint = JasperFillManager.fillReport(src,null,);
+        } catch (SQLException ex) {
+            Logger.getLogger(FormConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        conex.desconecta();
+    }//GEN-LAST:event_jButtonFinalizarConsultaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,7 +245,7 @@ public class FormConsulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonFinalizarConsulta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

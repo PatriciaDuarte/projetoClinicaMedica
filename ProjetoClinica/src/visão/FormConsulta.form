@@ -43,7 +43,7 @@
                                   <Component id="jTextFieldReceita" min="-2" pref="515" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jButton1" min="-2" pref="736" max="-2" attributes="0"/>
+                          <Component id="jButtonFinalizarConsulta" min="-2" pref="736" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -85,7 +85,7 @@
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="jButtonFinalizarConsulta" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -210,10 +210,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldReceita">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="jButtonFinalizarConsulta">
       <Properties>
         <Property name="text" type="java.lang.String" value="Finalizar Consulta"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFinalizarConsultaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>

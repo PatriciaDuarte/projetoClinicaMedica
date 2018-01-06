@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="25785fbd-183b-4521-aeaf-7c57d21879a9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="74"/>
+	<queryString>
+		<![CDATA[select *from consulta;]]>
+	</queryString>
+	<field name="id_consulta" class="java.lang.Integer"/>
+	<field name="id_agenda_cod" class="java.lang.Integer"/>
+	<field name="diagnostico_consulta" class="java.lang.String"/>
+	<field name="receita_consulta" class="java.lang.String"/>
+	<group name="GRUPO">
+		<groupExpression><![CDATA[$V{PAGE_NUMBER}]]></groupExpression>
+		<groupHeader>
+			<band height="802">
+				<image>
+					<reportElement x="352" y="0" width="203" height="166" uuid="bee8e4f0-737a-4f36-960c-c5ffd4ed2b9a"/>
+					<imageExpression><![CDATA["C:\\Users\\patricia\\Documents\\Relatorios\\logoclinica.jpg"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="161" y="26" width="191" height="20" uuid="e9f92dc5-1bcf-4da0-9210-9c206ca6ad3a"/>
+					<textElement>
+						<font size="15" isBold="true"/>
+					</textElement>
+					<text><![CDATA[RECEITUÁRIO MÉDICO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="221" y="762" width="100" height="20" uuid="1cc9d3a5-0575-48df-8db9-ca951dc19c6f"/>
+					<text><![CDATA[MW5 SOFTWARES]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="54" y="166" width="466" height="382" uuid="89eac1ac-31b6-4ece-9940-f85a7924da07"/>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+</jasperReport>

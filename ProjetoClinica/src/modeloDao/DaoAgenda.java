@@ -143,7 +143,6 @@ public class DaoAgenda
             agen.setNomeMed(conex.rs.getString("nome_medico"));
             agen.setMotivo(conex.rs.getString("agenda_motivo"));
             agen.setDadosAnimais(conex.rs.getString("paci_dadosanimais"));
-            //Colocar aqui os dados dos animais e criar get e set no BeansAgenda
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"Erro ao buscar agendamento por código!"+ex);
         }
